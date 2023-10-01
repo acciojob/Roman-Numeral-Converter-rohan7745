@@ -10,7 +10,22 @@ function convertToRoman(num) {
     };
 
   //your code here
+    let result = "";
+    
+    for (const symbol of romanSymbols) {
+        while (num >= symbol.value) {
+            result += symbol.symbol;
+            num -= symbol.value;
+        }
+    }
+    
+    return result;
+}
 
+// Example usage:
+const input = 14;
+const romanNumeral = intToRoman(input);
+console.log(romanNumeral); // Output: "XIV"
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
 
