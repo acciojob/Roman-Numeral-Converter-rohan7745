@@ -1,38 +1,33 @@
-function convertToRoman(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
+document.addEventListener("DOMContentLoaded", function () {
+    const convertButton = document.getElementById("convertButton");
+    const numberInput = document.getElementById("numberInput");
+    const resultDiv = document.getElementById("result");
 
-  //your code here
-    let result = "";
-    
-    for (const symbol of romanSymbols) {
-        while (num >= symbol.value) {
-            result += symbol.symbol;
-            num -= symbol.value;
+    function convertToRoman(num) {
+        const romanNumerals = [
+            // ... (the same array from the previous response)
+        ];
+
+        let result = "";
+
+        for (const numeral of romanNumerals) {
+            while (num >= numeral.value) {
+                result += numeral.symbol;
+                num -= numeral.value;
+            }
         }
+
+        return result;
     }
-    
-    return result;
-}
 
-// Example usage:
-const input = 14;
-const romanNumeral = intToRoman(input);
-console.log(romanNumeral); // Output: "XIV"
-}
-// You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
+    convertButton.addEventListener("click", function () {
+        const inputNumber = parseInt(numberInput.value);
 
-// console.log(convertToRoman(36));
-
-
-
-
-// do not edit below this line
-module.exports = convertToRoman
+        if (!isNaN(inputNumber) && inputNumber >= 0 && inputNumber <= 100000) {
+            const romanNumeral = convertToRoman(inputNumber);
+            resultDiv.textContent = `Roman Numeral: ${romanNumeral}`;
+        } else {
+            resultDiv.textContent = "Please enter a valid number (0-100000).";
+        }
+    });
+});
